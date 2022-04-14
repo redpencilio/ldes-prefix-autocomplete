@@ -1,0 +1,14 @@
+{{page-title 'SearchStreets'}}
+<form>
+  <Input
+    id='user_query'
+    @type='text'
+    @value={{this.value}}
+    {{on 'keyup' this.onInputChange}}
+  />
+</form>
+<ul>
+  {{#each this.suggestions as |suggestion|}}
+    <li>{{suggestion.name}}</li>
+  {{/each}}
+</ul>
