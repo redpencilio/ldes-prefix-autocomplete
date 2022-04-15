@@ -4,11 +4,15 @@ import { graph, Store, Fetcher, sym, NamedNode } from 'rdflib';
 export default class AutocompleteService extends Service.extend({
   // anything which *must* be merged to prototype here
 }) {
-  async init() {
-    super.init(...arguments);
-    let node = await this.fetchNode(API('streetnames/1'));
+  datasource = '';
+  extension: string = '';
+
+  async setDataSource(datasource: string, extension: string) {
+    this.datasource = datasource;
+    this.extension = extension;
+    let node = await this.fetchNode(datasource);
+    this.visitedNodes.clear();
     this.visitedNodes.set('', node);
-    // Fetch first node already
   }
 
   visitedNodes: Map<string, Store> = new Map<string, Store>();
@@ -93,18 +97,27 @@ export default class AutocompleteService extends Service.extend({
   }
 
   async fetchNode(url: string | NamedNode): Promise<Store> {
+    url += this.extension;
+
+    console.log(url);
     let node = graph();
     let fetcher = new Fetcher(node, {
       credentials: 'omit',
     });
     await new Promise<void>((resolve, reject) => {
-      fetcher.nowOrWhenFetched(url, function (ok) {
-        if (ok) {
-          resolve();
-        } else {
-          reject();
+      fetcher.nowOrWhenFetched(
+        url,
+        {
+          credentials: 'omit',
+        },
+        function (ok) {
+          if (ok) {
+            resolve();
+          } else {
+            reject();
+          }
         }
-      });
+      );
     });
     return node;
   }

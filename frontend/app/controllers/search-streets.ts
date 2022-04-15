@@ -9,7 +9,12 @@ export default class SearchStreetsController extends Controller {
   autocompleteService!: AutocompleteService;
 
   @tracked
-  value = '';
+  query = '';
+
+  @tracked
+  datasource = '';
+
+  extension = '';
 
   @tracked
   suggestions: any[] = [];
@@ -18,7 +23,18 @@ export default class SearchStreetsController extends Controller {
   async onInputChange() {
     console.log(this.autocompleteService.value);
     this.suggestions = await this.autocompleteService.getSuggestions(
-      this.value
+      this.query
     );
+  }
+
+  @action
+  async onSelectExtension(extension: string) {
+    this.extension = extension;
+  }
+
+  @action
+  async onSetDatasource(event) {
+    event.preventDefault();
+    this.autocompleteService.setDataSource(this.datasource, this.extension);
   }
 }

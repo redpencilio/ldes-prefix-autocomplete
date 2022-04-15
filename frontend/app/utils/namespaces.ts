@@ -1,6 +1,8 @@
 import { Namespace } from 'rdflib';
 
-export const API = Namespace('http://localhost:8888/');
+export const API = Namespace(
+  'http://bafybeiaysljpqogemo47sltgvrwasdxgm2h27fw7zl3gsajrfdxu7gu3om.ipfs.localhost:8080/'
+);
 
 export const example = Namespace('https://example.org/');
 

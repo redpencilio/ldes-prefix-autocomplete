@@ -1,9 +1,24 @@
 {{page-title 'SearchStreets'}}
+<form onsubmit={{this.onSetDatasource}}>
+  <Input
+    id='datasource'
+    @type='text'
+    placeholder='Enter your datasource'
+    @value={{this.datasource}}
+  />
+  <select onchange={{action 'onSelectExtension' value='target.value'}}>
+    <option value=''>No extension</option>
+    <option value='.ttl'>.ttl</option>
+    <option value='.jsonld'>.jsonld</option>
+  </select>
+  <Input @type='submit' @value='Set datasource' />
+</form>
 <form>
+  <label for='user_query'>Query: </label>
   <Input
     id='user_query'
     @type='text'
-    @value={{this.value}}
+    @value={{this.query}}
     {{on 'keyup' this.onInputChange}}
   />
 </form>
