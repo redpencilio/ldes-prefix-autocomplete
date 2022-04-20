@@ -1,29 +1,53 @@
 {{page-title 'SearchStreets'}}
-<form onsubmit={{this.onSetDatasource}}>
-  <Input
-    id='datasource'
-    @type='text'
-    placeholder='Enter your datasource'
-    @value={{this.datasource}}
-  />
-  <select onchange={{action 'onSelectExtension' value='target.value'}}>
-    <option value=''>No extension</option>
-    <option value='.ttl'>.ttl</option>
-    <option value='.jsonld'>.jsonld</option>
-  </select>
-  <Input @type='submit' @value='Set datasource' />
-</form>
-<form>
-  <label for='user_query'>Query: </label>
-  <Input
-    id='user_query'
-    @type='text'
-    @value={{this.query}}
-    {{on 'keyup' this.onInputChange}}
-  />
-</form>
-<ul>
-  {{#each this.suggestions as |suggestion|}}
-    <li>{{suggestion.name}}</li>
-  {{/each}}
-</ul>
+<div class='uk-container uk-margin-top'>
+
+  <form
+    onsubmit={{this.onSetDatasource}}
+    class='uk-grid-small uk-margin'
+    uk-grid
+  >
+    <div class='uk-width-3-5'>
+
+      <Input
+        id='datasource'
+        class='uk-input'
+        @type='text'
+        placeholder='Enter your datasource'
+        @value={{this.datasource}}
+      />
+    </div>
+    <div class='uk-width-1-5'>
+      <select
+        class='uk-select'
+        onchange={{action 'onSelectExtension' value='target.value'}}
+      >
+        <option value=''>No extension</option>
+        <option value='.ttl'>.ttl</option>
+        <option value='.jsonld'>.jsonld</option>
+      </select>
+    </div>
+    <div class='uk-width-1-5'>
+      <Input
+        class='uk-button uk-button-primary'
+        @type='submit'
+        @value='Set datasource'
+      />
+    </div>
+  </form>
+  <form>
+    <label for='user_query'>Query: </label>
+    <Input
+      id='user_query'
+      class='uk-input'
+      @type='text'
+      @value={{this.query}}
+      {{on 'keyup' this.onInputChange}}
+    />
+  </form>
+  <ul>
+    {{#each this.suggestions as |suggestion|}}
+      <li>{{suggestion.name}}</li>
+    {{/each}}
+  </ul>
+
+</div>

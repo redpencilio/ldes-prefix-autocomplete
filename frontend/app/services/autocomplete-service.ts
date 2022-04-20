@@ -1,6 +1,6 @@
 import Service from '@ember/service';
-import { API, example, tree } from 'frontend/utils/namespaces';
-import { graph, Store, Fetcher, sym, NamedNode } from 'rdflib';
+import { example, tree } from 'frontend/utils/namespaces';
+import { graph, Store, Fetcher, NamedNode } from 'rdflib';
 export default class AutocompleteService extends Service.extend({
   // anything which *must* be merged to prototype here
 }) {
