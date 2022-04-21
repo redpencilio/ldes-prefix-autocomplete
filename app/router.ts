@@ -9,3 +9,7 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('search', { path: '/' });
 });
+
+Router.reopen({
+  location: 'hash',
+});

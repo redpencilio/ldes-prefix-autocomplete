@@ -1,10 +1,14 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 import { example, tree } from 'frontend/utils/namespaces';
 import { graph, Store, Fetcher, NamedNode } from 'rdflib';
 export default class AutocompleteService extends Service.extend({
   // anything which *must* be merged to prototype here
 }) {
+  @tracked
   datasource = '';
+
+  @tracked
   extension: string = '';
 
   async setDataSource(datasource: string, extension: string) {

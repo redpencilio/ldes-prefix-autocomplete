@@ -14,6 +14,7 @@ export default class SearchController extends Controller {
   @tracked
   datasource = '';
 
+  @tracked
   extension = '';
 
   @tracked
@@ -27,8 +28,25 @@ export default class SearchController extends Controller {
     );
   }
 
+  get submitDisabled(): boolean {
+    if (this.datasource === '') {
+      return true;
+    } else {
+      console.log('test');
+      return (
+        this.datasource === this.autocompleteService.datasource &&
+        this.extension === this.autocompleteService.extension
+      );
+    }
+  }
+
+  get searchDisabled(): boolean {
+    return this.autocompleteService.datasource === '';
+  }
+
   @action
   async onSelectExtension(extension: string) {
+    console.log(extension);
     this.extension = extension;
   }
 
