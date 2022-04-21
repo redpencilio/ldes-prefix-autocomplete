@@ -4,7 +4,7 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import AutocompleteService from 'frontend/services/autocomplete-service';
 
-export default class SearchStreetsController extends Controller {
+export default class SearchController extends Controller {
   @service
   autocompleteService!: AutocompleteService;
 
@@ -33,7 +33,7 @@ export default class SearchStreetsController extends Controller {
   }
 
   @action
-  async onSetDatasource(event) {
+  async onSetDatasource(event: any) {
     event.preventDefault();
     this.autocompleteService.setDataSource(this.datasource, this.extension);
   }
